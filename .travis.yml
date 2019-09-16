@@ -4,18 +4,18 @@ services:
   - docker
 
 before_install:
-  - docker build -t khu-021a/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t khu021a/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true khu-021a/react-test npm run test
+  - docker run -e CI=true khu021a/react-test npm run test
 
 after_success:
-  - docker build -t khu-021a/multi-client ./client
-  - docker build -t khu-021a/multi-nginx ./nginx
-  - docker build -t khu-021a/multi-server ./server
-  - docker build -t khu-021a/multi-worker ./worker
+  - docker build -t khu021a/multi-client ./client
+  - docker build -t khu021a/multi-nginx ./nginx
+  - docker build -t khu021a/multi-server ./server
+  - docker build -t khu021a/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push khu-021a/multi-client
-  - docker push khu-021a/multi-nginx
-  - docker push khu-021a/multi-server
-  - docker push khu-021a/multi-worker
+  - docker push khu021a/multi-client
+  - docker push khu021a/multi-nginx
+  - docker push khu021a/multi-server
+  - docker push khu021a/multi-worker
